@@ -37,9 +37,9 @@ class MainActivity : AppCompatActivity() {
     private var N = 0
     private var array = Array(5) { IntArray(5) }
     private var saveArray = Array(5) { IntArray(5) }
-    private lateinit var pasuxi: TextView
+    private lateinit var result: TextView
     private lateinit var button: Button
-    private lateinit var ricxvebi: MutableList<EditText>
+    private lateinit var numbers: MutableList<EditText>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -68,12 +68,12 @@ class MainActivity : AppCompatActivity() {
         number23= findViewById(R.id.editTextTextPersonName23)
         number24= findViewById(R.id.editTextTextPersonName24)
         number25 = findViewById(R.id.editTextTextPersonName26)
-        pasuxi = findViewById(R.id.textView)
+        result = findViewById(R.id.textView)
         button = findViewById(R.id.button)
         val n = intent?.extras?.getString("N")
         N = n.toString().toInt()
 
-        ricxvebi = mutableListOf(
+        numbers = mutableListOf(
             number1, number2, number3, number4, number5, number6, number7, number8,
             number9, number10, number11, number12, number13, number14, number15, number16,
             number17, number18, number19, number20, number21, number22, number23, number24, number25
@@ -89,15 +89,15 @@ class MainActivity : AppCompatActivity() {
             number16.visibility = View.INVISIBLE
             number21.visibility = View.INVISIBLE
             array = Array(N) { IntArray(N) }
-            ricxvebi.remove(number1)
-            ricxvebi.remove(number2)
-            ricxvebi.remove(number3)
-            ricxvebi.remove(number4)
-            ricxvebi.remove(number5)
-            ricxvebi.remove(number6)
-            ricxvebi.remove(number11)
-            ricxvebi.remove(number16)
-            ricxvebi.remove(number21)
+            numbers.remove(number1)
+            numbers.remove(number2)
+            numbers.remove(number3)
+            numbers.remove(number4)
+            numbers.remove(number5)
+            numbers.remove(number6)
+            numbers.remove(number11)
+            numbers.remove(number16)
+            numbers.remove(number21)
         }
         if(N == 3){
             number1.visibility = View.INVISIBLE
@@ -118,22 +118,22 @@ class MainActivity : AppCompatActivity() {
             number24.visibility = View.INVISIBLE
 
             array = Array(N) { IntArray(N) }
-            ricxvebi.remove(number1)
-            ricxvebi.remove(number2)
-            ricxvebi.remove(number3)
-            ricxvebi.remove(number4)
-            ricxvebi.remove(number5)
-            ricxvebi.remove(number6)
-            ricxvebi.remove(number11)
-            ricxvebi.remove(number16)
-            ricxvebi.remove(number21)
-            ricxvebi.remove(number10)
-            ricxvebi.remove(number15)
-            ricxvebi.remove(number20)
-            ricxvebi.remove(number25)
-            ricxvebi.remove(number22)
-            ricxvebi.remove(number23)
-            ricxvebi.remove(number24)
+            numbers.remove(number1)
+            numbers.remove(number2)
+            numbers.remove(number3)
+            numbers.remove(number4)
+            numbers.remove(number5)
+            numbers.remove(number6)
+            numbers.remove(number11)
+            numbers.remove(number16)
+            numbers.remove(number21)
+            numbers.remove(number10)
+            numbers.remove(number15)
+            numbers.remove(number20)
+            numbers.remove(number25)
+            numbers.remove(number22)
+            numbers.remove(number23)
+            numbers.remove(number24)
 
 
         }
@@ -149,11 +149,11 @@ class MainActivity : AppCompatActivity() {
         var sum = 0
         for(k in 0..N -1) {
             for(i in 0..N - 1){
-                array[k][i] = ricxvebi[m].text.toString().toInt()
+                array[k][i] = numbers[m].text.toString().toInt()
                 m++
             }
         }
-        pasuxi.text = array[1][2].toString()
+        result.text = array[1][2].toString()
         var x = 1
         for(i in 0..N - 1) {
             if((i + 0)%2!=0){
@@ -161,12 +161,12 @@ class MainActivity : AppCompatActivity() {
             }
             sum = determinant(i, 0, 0, saveArray) + sum
         }
-        pasuxi.text = sum.toString()
+        result.text = sum.toString()
     }
     private fun determinant(row:Int, column:Int, needed:Int, Array:Array<IntArray>):Int{
 
         var parent = 0
-        var kide = row
+
         var saveArray = Array((N - 1)- needed){IntArray((N - 1)- needed)}
         if(needed == 0){
             parent = array[column][row]
